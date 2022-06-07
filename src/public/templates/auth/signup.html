@@ -1,0 +1,21 @@
+{% from '_macro_form.html' import required_text_field %}
+
+{% extends "layout.html" %}
+
+{% block aside_content %}{% endblock %}
+
+{% block main_content %}
+    <form method="post" action="">
+        {{ data.sign_up.hidden_tag() }}
+        {{ required_text_field(data.sign_up.email) }}
+        {{ required_text_field(data.sign_up.password) }}
+        {{ required_text_field(data.sign_up.repeat_password) }}
+        {{ data.sign_up.submit }}
+    </form>
+    <div>
+        {% trans %}Do you have an account?{% endtrans %}
+    </div>
+    <div>
+        <a href="{{ url_for('auth.signin') }}">{% trans %}Sign in{% endtrans %}</a>
+    </div>
+{% endblock %}

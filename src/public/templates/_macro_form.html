@@ -1,0 +1,22 @@
+<!-- General fields -->
+{% macro required_text_field(field) %}
+    {{ field(**kwargs)|safe }}
+    {% for error in field.errors %}
+        <div><span style="font-size:10px; color: #cf0b0b;">{{ error }}</span></div>
+    {% endfor %}
+{% endmacro %}
+
+{% macro required_textarea_field(field) %}
+    {% set f = field.process_data(**kwargs) %}
+    {{ field(class_="add-content__textarea add-content__item", **kwargs)|safe }}
+    {% for error in field.errors %}
+        <div><span style="font-size:10px; color: #cf0b0b;">{{ error }}</span></div>
+    {% endfor %}
+{% endmacro %}
+
+{% macro required_select_field(field) %}
+    {{ field(**kwargs) }}
+    {% for error in field.errors %}
+        <div><span>{{ error }}</span></div>
+    {% endfor %}
+{% endmacro %}
